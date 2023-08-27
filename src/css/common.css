@@ -16,22 +16,17 @@ img {
   display: block;
   max-width: 100%;
 }
-div.timer {
+.timer {
   display: flex;
-  flex-direction: row;
-  padding: 0px;
 }
-div {
+.field {
   padding-left: 15px;
   text-transform: uppercase;
-  display: flex;
   flex-direction: column;
+  display: flex;
   text-align: center;
   font-weight: 500;
 }
 .value {
   font-size: 40px;
-}
-input {
-  margin-left: 15px;
 }
