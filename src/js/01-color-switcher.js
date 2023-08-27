@@ -3,6 +3,7 @@ const stopButton = document.querySelector('[data-stop]');
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
+let intervalId;
 
 startButton.addEventListener('click', () => {
   intervalId = setInterval(changeBackgroundColor, 1000);
