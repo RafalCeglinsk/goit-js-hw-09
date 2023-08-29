@@ -4,7 +4,7 @@ const form = document.querySelector('.form');
 
 form.addEventListener('submit', handleSubmit);
 
-async function createPromise(position, delay) {
+function createPromise(position, delay) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const shouldResolve = Math.random() > 0.3;
@@ -17,7 +17,7 @@ async function createPromise(position, delay) {
   });
 }
 
-async function handleSubmit(e) {
+function handleSubmit(e) {
   e.preventDefault();
 
   const initialDelay = parseInt(form.elements.delay.value);
@@ -28,15 +28,16 @@ async function handleSubmit(e) {
     const position = i + 1;
     const currentDelay = initialDelay + step * i;
 
-    try {
-      const result = await createPromise(position, currentDelay);
-      Notiflix.Notify.success(
-        `Fulfilled promise ${result.position} in ${result.delay} ms`
-      );
-    } catch (error) {
-      Notiflix.Notify.failure(
-        `Rejected promise ${error.position} in ${error.delay} ms`
-      );
-    }
+    createPromise(position, currentDelay)
+      .then(result => {
+        Notiflix.Notify.success(
+          `Fulfilled promise ${result.position} in ${result.delay} ms`
+        );
+      })
+      .catch(error => {
+        Notiflix.Notify.failure(
+          `Rejected promise ${error.position} in ${error.delay} ms`
+        );
+      });
   }
 }
